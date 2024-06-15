@@ -1,0 +1,169 @@
+*, *::after, *::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: darkcyan;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    overflow: hidden; /* Ensure no scrollbars appear */
+}
+
+#loadingScreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000; /* Ensure it covers everything else */
+}
+
+#loadingGif {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensure the GIF covers the entire screen */
+}
+
+.base {
+    height: 150px;
+    width: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: scale(1.5);
+    position: relative;
+    display: none; /* Hide initially */
+}
+
+.bat {
+    height: 0.2em;
+    width: 3em;
+    background-color: brown;
+    position: absolute;
+    top: 73%; /* Ajustamos la línea de carga más abajo */
+    transform-origin: 25px -100px;
+    animation: bat 3s linear infinite;
+}
+
+.pokeball {
+    height: 2em;
+    width: 2em;
+    background: #fff;
+    border-radius: 50%;
+    position: absolute;
+    top: 21%; /* Ajustamos la Pokébola más arriba */
+    left: 40%;
+    transform: translate(-50%, -50%); /* Ajustamos solo el eje X */
+    overflow: hidden;
+    border: 0.3em solid #000;
+    animation: ball 3s linear infinite;
+}
+
+.pokeball:before,
+.pokeball:after {
+    content: "";
+    position: absolute;
+}
+
+.pokeball:before {
+    background: red;
+    width: 100%;
+    height: 50%;
+    top: 0;
+    left: 0;
+}
+
+.pokeball:after {
+    background: #000;
+    width: 60%;
+    height: 60%;
+    border-radius: 50%;
+    top: 20%;
+    left: 20%;
+    box-shadow: inset 0 0 0 0.2em #7f8c8d;
+}
+
+.bat span {
+    font-size: 0.7em;
+    position: absolute;
+    top: 1px;
+}
+
+@keyframes ball {
+    0% {
+        transform: translate(0px);
+    }
+    5% {
+        transform: translateX(5px) translateY(5px);
+    }
+    25% {
+        transform: translateX(20px) translateY(45px);
+    }
+    45% {
+        transform: translateX(5px) translateY(5px);
+    }
+    50% {
+        transform: translate(0px);
+    }
+    55% {
+        transform: translateX(-5px) translateY(5px);
+    }
+    75% {
+        transform: translateX(-20px) translateY(45px);
+    }
+    95% {
+        transform: translateX(-5px) translateY(5px);
+    }
+    100% {
+        transform: translate(0px);
+    }
+}
+
+@keyframes bat {
+    0% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(-15deg);
+    }
+    75% {
+        transform: rotate(15deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+.loading {
+    font-size: 0.7em;
+    position: absolute;
+    top: 1px;
+    animation: changeColor 3s linear infinite;
+}
+
+@keyframes changeColor {
+    0% {
+        color: red;
+    }
+    25% {
+        color: yellow;
+    }
+    50% {
+        color: green;
+    }
+    75% {
+        color: blue;
+    }
+    100% {
+        color: red;
+    }
+}
